@@ -12,7 +12,6 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   await UserController.getUserData();
-  // GlobalBindings().dependencies();
 
   runApp(MyApp());
 }
