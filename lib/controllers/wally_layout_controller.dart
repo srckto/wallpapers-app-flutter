@@ -17,7 +17,6 @@ class _BoardingItem {
 
 class WallyLayoutController {
   static int currentIndex = 0;
-  static int index = 0;
   static List<_BoardingItem> item = [
     _BoardingItem(label: "Home", icon: Icon(Icons.search), screen: ExploarScreen()),
     _BoardingItem(label: "Favorite", icon: Icon(Icons.favorite), screen: FavoriteScreen()),

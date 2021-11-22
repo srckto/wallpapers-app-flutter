@@ -45,17 +45,14 @@ class WallpaperViewScreen extends StatelessWidget {
                         icon: Icon(Icons.file_download),
                         // onPressed: _launchURL,
                         label: Text("Get wallpaper"),
-                        onPressed: () {
-                          _wallpaperViewController.launchURL(imageModel.imageUrl);
-                        },
+                        onPressed: () => _wallpaperViewController.launchURL(imageModel.imageUrl),
                       ),
                       ElevatedButton.icon(
                         icon: Icon(Icons.share),
                         // onPressed: _createDynamicLink,
                         label: Text("Share"),
-                        onPressed: () {
-                          _wallpaperViewController.createDynamicLink(imageModel: imageModel);
-                        },
+                        onPressed: () =>
+                            _wallpaperViewController.createDynamicLink(imageModel: imageModel),
                       ),
                       GetBuilder<WallpaperViewController>(
                         builder: (_) {

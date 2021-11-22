@@ -38,7 +38,3 @@ class _WallyLayoutState extends State<WallyLayout> {
   }
 }
 
-// IndexedStack(
-//         index: WallyLayoutController.index,
-//         children: WallyLayoutController.item.map((e) => e.screen).toList(),
-//       ),
