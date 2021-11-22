@@ -5,12 +5,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:wally_app/controllers/user_controller.dart';
 import 'package:wally_app/models/image_model.dart';
 
 class AddWallpaperController extends GetxController {
   File? image;
   String? imageUrl;
-  FirebaseAuth _auth = FirebaseAuth.instance;
   FirebaseFirestore _firestore = FirebaseFirestore.instance;
   FirebaseStorage _storage = FirebaseStorage.instance;
   bool state = false;
@@ -46,7 +46,7 @@ class AddWallpaperController extends GetxController {
       ImageModel _imageModel = ImageModel(
         imageUrl: imageUrl!,
         date: DateTime.now().toString(),
-        uploaded_by: _auth.currentUser!.uid,
+        uploaded_by: UserController.userModel.uId,
         favorites: {},
       );
 

@@ -16,8 +16,6 @@ class WallpaperViewController extends GetxController {
   }
 
   Future addToFavoriteOrDelete({required ImageModel imageModel}) async {
-    // print(imageModel.favorites.containsKey(UserController.userModel.uId));
-    // print(UserController.userModel.uId);
 
     isFavorite = imageModel.favorites[UserController.userModel.uId] ?? false;
     update();
@@ -85,7 +83,6 @@ class WallpaperViewController extends GetxController {
     );
 
     Uri url = await dynamicLinkParameters.buildUrl();
-    // print(url.toString());
 
     Share.share(url.toString());
   }
