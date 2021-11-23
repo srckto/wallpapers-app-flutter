@@ -3,13 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
 import 'package:wally_app/controllers/favorite_controller.dart';
-import 'package:wally_app/models/enum_file.dart';
 import 'package:wally_app/screens/wallpaper_view_screen.dart';
 
 class FavoriteScreen extends StatelessWidget {
   FavoriteScreen({Key? key}) : super(key: key);
   final FavoriteController _favoriteController = Get.put(FavoriteController());
-  final SelectedImageScreen selectedImageScreen = SelectedImageScreen.Favorite;
+  final String _heroTag = "favotiteScreen";
 
   @override
   Widget build(BuildContext context) {
@@ -52,14 +51,13 @@ class FavoriteScreen extends StatelessWidget {
                         padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                         itemCount: _favoriteController.images.length,
                         itemBuilder: (BuildContext context, int index) => Hero(
-                          tag: _favoriteController.images[index].imageId! +
-                              selectedImageScreen.toString(),
+                          tag: _favoriteController.images[index].imageId! + _heroTag,
                           child: GestureDetector(
                             onTap: () async {
                               await Get.to(
                                 () => WallpaperViewScreen(
                                   imageModel: _favoriteController.images[index],
-                                  selectedImageScreen: selectedImageScreen,
+                                  heroTag: _heroTag,
                                 ),
                               );
                               _favoriteController.getFavoriteImages();

@@ -5,7 +5,6 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
 import 'package:wally_app/controllers/account_controller.dart';
 import 'package:wally_app/controllers/user_controller.dart';
-import 'package:wally_app/models/enum_file.dart';
 import 'package:wally_app/screens/add_wallpaper_screen.dart';
 import 'package:wally_app/screens/login_screen.dart';
 
@@ -15,7 +14,7 @@ class AccountScreen extends StatelessWidget {
   AccountScreen({Key? key}) : super(key: key);
 
   final AccountController _accountController = Get.put(AccountController());
-  final SelectedImageScreen selectedImageScreen = SelectedImageScreen.Account;
+  final String _heroTag = "accountScreen";
 
   @override
   Widget build(BuildContext context) {
@@ -108,12 +107,12 @@ class AccountScreen extends StatelessWidget {
                               onTap: () => Get.to(
                                 () => WallpaperViewScreen(
                                   imageModel: _accountController.images[index],
-                                  selectedImageScreen: selectedImageScreen,
+                                  heroTag: _heroTag,
                                 ),
                               ),
                               child: Hero(
                                 tag: _accountController.images[index].imageId! +
-                                    selectedImageScreen.toString(),
+                                    _heroTag,
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(10),
                                   child: CachedNetworkImage(

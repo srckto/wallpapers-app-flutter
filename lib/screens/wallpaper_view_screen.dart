@@ -2,14 +2,13 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wally_app/controllers/wallpaper_view_controller.dart';
-import 'package:wally_app/models/enum_file.dart';
 import 'package:wally_app/models/image_model.dart';
 
 class WallpaperViewScreen extends StatelessWidget {
-  WallpaperViewScreen({Key? key, required this.imageModel, required this.selectedImageScreen});
+  WallpaperViewScreen({Key? key, required this.imageModel, required this.heroTag});
 
   final ImageModel imageModel;
-  final SelectedImageScreen selectedImageScreen;
+  final String heroTag;
   final WallpaperViewController _wallpaperViewController = Get.put(WallpaperViewController());
 
   @override
@@ -24,7 +23,7 @@ class WallpaperViewScreen extends StatelessWidget {
               children: <Widget>[
                 Container(
                   child: Hero(
-                    tag: imageModel.imageId! + selectedImageScreen.toString(),
+                    tag: imageModel.imageId! + heroTag,
                     child: CachedNetworkImage(
                       placeholder: (ctx, url) => Image(
                         image: AssetImage("assets/placeholder.jpg"),

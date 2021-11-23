@@ -3,13 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
 import 'package:wally_app/controllers/exploar_controller.dart';
-import 'package:wally_app/models/enum_file.dart';
 import 'package:wally_app/screens/wallpaper_view_screen.dart';
 
 class ExploarScreen extends StatelessWidget {
   ExploarScreen({Key? key}) : super(key: key);
-  final SelectedImageScreen selectedImageScreen = SelectedImageScreen.Explaor;
   final ExploarController _exploarController = Get.put(ExploarController());
+  final String _heroTag = "exploarScreen";
 
   @override
   Widget build(BuildContext context) {
@@ -53,11 +52,11 @@ class ExploarScreen extends StatelessWidget {
                         itemCount: _exploarController.images.length,
                         itemBuilder: (BuildContext context, int index) => Hero(
                           tag: _exploarController.images[index].imageId! +
-                              selectedImageScreen.toString(),
+                              _heroTag,
                           child: GestureDetector(
                             onTap: () => Get.to(() => WallpaperViewScreen(
                                   imageModel: _exploarController.images[index],
-                                  selectedImageScreen: selectedImageScreen,
+                                  heroTag: _heroTag,
                                 )),
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(10),
