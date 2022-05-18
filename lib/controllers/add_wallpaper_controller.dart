@@ -12,11 +12,9 @@ class AddWallpaperController extends GetxController {
   String? imageUrl;
   FirebaseFirestore _firestore = FirebaseFirestore.instance;
   FirebaseStorage _storage = FirebaseStorage.instance;
-  bool state = false;
+  bool isLoading = false;
 
   void pickedImage() async {
-    // picked image from gallery
-    // Then, initialize this to a variable (image) if (picked image) is not equal to null
     XFile? imagePicked = await ImagePicker().pickImage(source: ImageSource.gallery);
     if (imagePicked != null) {
       image = File(imagePicked.path);
@@ -26,10 +24,7 @@ class AddWallpaperController extends GetxController {
 
   void uploadImage() async {
     try {
-      // the variable state is a flag to show linear progress indicator or hidden it
-      // if true => show LinearProgressIndicator
-      // else false => hide LinearProgressIndicator
-      state = true;
+      isLoading = true;
       update();
 
       // upload to firestorage
@@ -46,7 +41,8 @@ class AddWallpaperController extends GetxController {
         imageUrl: imageUrl!,
         date: DateTime.now().toString(),
         uploaded_by: UserController.userModel.uId,
-        favorites: {},
+        favorites: {}, 
+        imageName: Uri.file(image!.path).pathSegments.last,
       );
 
       // upload _imageModel to FirebaseFirestore
@@ -54,15 +50,15 @@ class AddWallpaperController extends GetxController {
         value.update({"imageId": value.id});
       });
 
-      // Change state to false to hide a LinearProgressIndicator
-      state = false;
+
+      isLoading = false;
       update();
 
       Get.back();
     } catch (error) {
       print(error);
-      // if when happen an error alse change state to hide the LinearProgressIndicator
-      state = false;
+
+      isLoading = false;
       update();
     }
   }

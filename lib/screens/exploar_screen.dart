@@ -28,6 +28,7 @@ class ExploarScreen extends StatelessWidget {
               ),
             ),
             GetBuilder<ExploarController>(
+              // init: ExploarController(),
               builder: (_) {
                 return _exploarController.images.isEmpty
                     ? Container(

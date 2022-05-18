@@ -8,16 +8,16 @@ class FavoriteController extends GetxController {
   FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   @override
-  // ignore: must_call_super
   onInit() async {
+    super.onInit();
+    images = [];
+    update();
     await getFavoriteImages();
     update();
   }
 
   Future<void> getFavoriteImages() async {
-    // Get all favorte images from farebaseFirestore
-    // path */images/*all doces
-
+   
     return _firestore.collection("images").orderBy("date").get().then((value) {
       images = [];
       value.docs.forEach((element) {

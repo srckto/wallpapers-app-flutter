@@ -109,7 +109,7 @@ class LogInScreen extends StatelessWidget {
                   ),
                   GetBuilder<LoginController>(
                     builder: (_) {
-                      return _loginController.state
+                      return _loginController.isLoading
                           ? Padding(
                               padding: const EdgeInsets.symmetric(vertical: 5),
                               child: CircularProgressIndicator(
@@ -125,11 +125,10 @@ class LogInScreen extends StatelessWidget {
                                 ),
                                 child: InkWell(
                                   onTap: () {
-                                     _loginController.login(
+                                    _loginController.login(
                                       email: _emailController.text,
                                       password: _passwordController.text,
                                     );
-                                    
                                   },
                                   child: Container(
                                     width: MediaQuery.of(context).size.width,

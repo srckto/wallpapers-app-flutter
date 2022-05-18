@@ -22,7 +22,7 @@ class AddWallpaperScreen extends StatelessWidget {
             child: Column(
               children: [
                 GetBuilder<AddWallpaperController>(
-                  builder: (_) => _addWallpaperController.state
+                  builder: (_) => _addWallpaperController.isLoading
                       ? LinearProgressIndicator(
                           color: Colors.deepOrange,
                         )

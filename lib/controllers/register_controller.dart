@@ -2,10 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:wally_app/controllers/account_controller.dart';
+import 'package:wally_app/controllers/exploar_controller.dart';
+import 'package:wally_app/controllers/favorite_controller.dart';
 import 'package:wally_app/controllers/user_controller.dart';
 import 'package:wally_app/models/user_model.dart';
 import 'package:wally_app/screens/wally_layout.dart';
-
 
 class RegisterController extends GetxController {
   final FirebaseFirestore _db = FirebaseFirestore.instance;
@@ -43,9 +45,10 @@ class RegisterController extends GetxController {
 
       await UserController.getUserData();
 
-      // Navigate to HomeScreen of app
+      Get.find<AccountController>().onInit();
+      Get.find<FavoriteController>().onInit();
+      Get.find<ExploarController>().onInit();
       Get.off(() => WallyLayout());
-
     } on FirebaseAuthException catch (e) {
       state = false;
       update();

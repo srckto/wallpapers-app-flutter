@@ -28,6 +28,7 @@ class FavoriteScreen extends StatelessWidget {
               ),
             ),
             GetBuilder<FavoriteController>(
+              // init: FavoriteController(),
               builder: (_) {
                 return _favoriteController.images.isEmpty
                     ? Container(

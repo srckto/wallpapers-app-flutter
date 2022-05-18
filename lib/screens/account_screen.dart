@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
 import 'package:wally_app/controllers/account_controller.dart';
+import 'package:wally_app/controllers/exploar_controller.dart';
+import 'package:wally_app/controllers/favorite_controller.dart';
 import 'package:wally_app/controllers/user_controller.dart';
 import 'package:wally_app/screens/add_wallpaper_screen.dart';
 import 'package:wally_app/screens/login_screen.dart';
@@ -18,7 +20,7 @@ class AccountScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    _accountController.getImages();
+    // _accountController.getImagesOfUser();
     return Container(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
@@ -32,11 +34,11 @@ class AccountScreen extends StatelessWidget {
                 placeholder: AssetImage("assets/placeholder.jpg"),
                 image: NetworkImage(UserController.userModel.image),
                 fit: BoxFit.cover,
-                width: 200,
-                height: 200,
+                width: 150,
+                height: 150,
               ),
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 15),
             Text(
               "${UserController.userModel.name}",
               style: TextStyle(
@@ -72,13 +74,14 @@ class AccountScreen extends StatelessWidget {
                 TextButton(
                   onPressed: () async {
                     await Get.to(() => AddWallpaperScreen());
-                    _accountController.getImages();
+                    _accountController.getImagesOfUser();
                   },
                   child: Icon(Icons.add),
                 ),
               ],
             ),
             GetBuilder<AccountController>(
+              // init: AccountController(),
               builder: (_) {
                 return _accountController.images.isEmpty
                     ? Container(
@@ -111,8 +114,7 @@ class AccountScreen extends StatelessWidget {
                                 ),
                               ),
                               child: Hero(
-                                tag: _accountController.images[index].imageId! +
-                                    _heroTag,
+                                tag: _accountController.images[index].imageId! + _heroTag,
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(10),
                                   child: CachedNetworkImage(

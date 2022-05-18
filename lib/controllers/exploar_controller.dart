@@ -7,8 +7,10 @@ class ExploarController extends GetxController {
   FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   @override
-  // ignore: must_call_super
   onInit() async {
+    super.onInit();
+    images = [];
+    update();
     await getImages();
     update();
   }
